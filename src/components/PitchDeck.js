@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-// Define Afrobeats color palette
+// Enhanced Nigerian-themed colors and patterns
 const colors = {
-  orange: '#FF6B00',
-  yellow: '#FFD700',
-  green: '#00A86B',
-  darkBg: '#1A0F3C',
+  green: '#008751',  // Nigerian Green
+  white: '#FFFFFF',  // Pure White
+  lightGreen: '#00A86B',
+  darkGreen: '#004D2C',
+  darkBg: '#0A1F14',
+  gold: '#FFD700',  // For accents
   lightText: 'rgba(255, 255, 255, 0.9)',
-  darkText: '#0A0A0F'
 };
 
 const ShareOptions = styled.div`
@@ -17,20 +18,34 @@ const ShareOptions = styled.div`
   top: 20px;
   right: 20px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 const ShareButton = styled.button`
   padding: 12px 24px;
-  background: linear-gradient(45deg, #FFD700, #FF1493);
+  background: linear-gradient(45deg, ${colors.green}, ${colors.lightGreen});
   border: none;
   border-radius: 30px;
-  color: white;
+  color: ${colors.white};
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   
   &:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, ${colors.lightGreen}, ${colors.green});
+  }
+
+  &::before {
+    content: '🔗';
+    font-size: 1.2rem;
   }
 `;
 
@@ -39,21 +54,29 @@ const SharePopup = styled.div`
   top: 100%;
   right: 0;
   margin-top: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 135, 81, 0.1);
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid ${colors.green}40;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 `;
 
 const ShareLink = styled.input`
   width: 300px;
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
+  padding: 12px;
+  border: 1px solid ${colors.green}40;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: ${colors.white};
   margin-bottom: 10px;
+  font-size: 1rem;
+  
+  &:focus {
+    outline: none;
+    border-color: ${colors.green};
+    box-shadow: 0 0 0 2px ${colors.green}30;
+  }
 `;
 
 const PitchDeck = () => {
@@ -93,27 +116,21 @@ const PitchDeck = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const afrobeatsColors = [
-      'rgba(255, 128, 0, 0.3)',  // Orange
-      'rgba(255, 215, 0, 0.3)',  // Gold
-      'rgba(0, 255, 127, 0.3)',  // Spring Green
-      'rgba(255, 0, 127, 0.3)',  // Pink
-      'rgba(148, 0, 211, 0.3)'   // Purple
-    ];
-
-    const symbols = ['♪', '♫', '♬', '🎵', '🎶'];
+    // Enhanced symbols array with more musical notation
+    const symbols = ['♪', '♫', '♬', '🎵', '🎶', '𝄞', '𝄢', '𝅘𝅥𝅮', '𝅗𝅥', '𝄫'];
     const symbolsArray = [];
 
-    for (let i = 0; i < 40; i++) {
+    // Create more symbols for denser background
+    for (let i = 0; i < 60; i++) {
       symbolsArray.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
-        color: afrobeatsColors[Math.floor(Math.random() * afrobeatsColors.length)],
         size: 15 + Math.random() * 25,
         rotation: Math.random() * Math.PI * 2,
         speed: 0.2 + Math.random() * 0.3,
-        pulse: Math.random() * Math.PI * 2
+        pulse: Math.random() * Math.PI * 2,
+        color: `rgba(0, 135, 81, ${0.1 + Math.random() * 0.2})`
       });
     }
 
@@ -177,72 +194,84 @@ const PitchDeck = () => {
         )}
       </ShareOptions>
       <GradientOverlay />
+      <PatternOverlay />
       <ContentWrapper>
         <MainContent>
           <CoverSection>
-            <Logo>W</Logo>
+            <Logo>
+              <span>W</span>
+              <AdinkraSymbol>✳</AdinkraSymbol>
+            </Logo>
             <Title>Wizkid Token</Title>
             <Subtitle>The Future of Afrobeats & Crypto</Subtitle>
-            <TagLine>Empowering a digital economy with rhythm and innovation</TagLine>
+            <TagLine>🚀 Empowering a digital economy with rhythm and innovation.</TagLine>
           </CoverSection>
-          
+
           <StyledSection>
             <h2>The Big Idea</h2>
-            <p>Revolutionizing the music industry through blockchain technology and Afrobeats culture. Creating a unique ecosystem where fans can directly support artists and participate in the future of music.</p>
+            <StyledList>
+              <li>🎶 First Afrobeats-inspired lifestyle crypto token.</li>
+              <li>🌍 Bridges culture & decentralised finance.</li>
+              <li>💰 Offers global accessibility to a new financial movement.</li>
+            </StyledList>
           </StyledSection>
-          
+
           <StyledSection>
             <h2>Market Strategies</h2>
-            <p>Targeting the intersection of crypto enthusiasts and Afrobeats fans worldwide.</p>
-            <ul>
-              <li>Global Afrobeats community engagement</li>
-              <li>Strategic partnerships with music platforms</li>
-              <li>Innovative token utility in music streaming</li>
-            </ul>
+            <StyledList>
+              <li>🔥 Tease & Hype: Wizkid drops a cryptic tweet like "Big sound, big money—watch this space."</li>
+              <li>📈 Liquidity Lock: Ensuring price stability and investor confidence.</li>
+              <li>💬 Telegram Community: 24/7 chat with exclusive giveaways & token rewards.</li>
+              <li>📱 Viral Platforms: Leveraging X, TikTok, Instagram to push adoption.</li>
+            </StyledList>
           </StyledSection>
-          
+
           <StyledSection>
             <h2>Revenue Potential</h2>
-            <p>Multiple revenue streams through:</p>
-            <ul>
-              <li>Token transactions and trading</li>
-              <li>Exclusive content access</li>
-              <li>Virtual events and experiences</li>
-              <li>Artist collaboration platform</li>
-            </ul>
+            <StyledList>
+              <li>🏦 DEX Market Maker: Building a sustainable token economy.</li>
+              <li>📊 Growth Strategy: More adoption = increased token value.</li>
+              <li>💸 Token Utility: Community staking rewards & premium-tier access for holders.</li>
+            </StyledList>
           </StyledSection>
-          
+
           <StyledSection>
-            <h2>Strategic Partnerships</h2>
-            <p>Building strong alliances with:</p>
-            <ul>
-              <li>Major streaming platforms</li>
-              <li>Leading crypto exchanges</li>
-              <li>Music industry influencers</li>
-              <li>Global entertainment brands</li>
-            </ul>
+            <h2>Partnerships & Collaborations</h2>
+            <StyledList>
+              <li>🤝 Crypto Alliances: Collaborate with Web3 platforms & fintech firms.</li>
+              <li>💎 Strategic Investors: Partnerships with major exchanges and blockchain firms.</li>
+              <li>📢 Influencer Marketing: Leveraging global music stars & digital influencers.</li>
+            </StyledList>
           </StyledSection>
-          
+
           <StyledSection>
             <h2>Key Deliverables</h2>
-            <p>Our roadmap includes:</p>
-            <ul>
-              <li>Token launch and distribution</li>
-              <li>Platform development</li>
-              <li>Community building initiatives</li>
-              <li>Artist onboarding program</li>
-            </ul>
+            <h3>⏳ Pre-Launch:</h3>
+            <StyledList>
+              <li>Wizkid's teaser tweet: "Afrobeats to the blockchain—are you ready?"</li>
+              <li>TikTok & IG engagement campaign.</li>
+            </StyledList>
+            
+            <h3>🚀 Launch Day:</h3>
+            <StyledList>
+              <li>Official social media announcement.</li>
+              <li>Community activation with fan incentives.</li>
+            </StyledList>
+            
+            <h3>📢 Post-Launch:</h3>
+            <StyledList>
+              <li>Social media push to drive adoption.</li>
+              <li>Exclusive holders' club access with perks.</li>
+            </StyledList>
           </StyledSection>
-          
+
           <StyledSection>
-            <h2>Viral Growth Strategy</h2>
-            <p>Amplifying our reach through:</p>
-            <ul>
-              <li>Social media integration</li>
-              <li>Influencer partnerships</li>
-              <li>Community rewards program</li>
-              <li>Exclusive events and drops</li>
-            </ul>
+            <h2>Viral Strategy</h2>
+            <StyledList>
+              <li>📣 $WizToken: Official launch hashtag.</li>
+              <li>🔥 Challenge Campaign: Fan-driven engagement to push token awareness.</li>
+              <li>🎥 Hype Videos & Influencer Endorsements: High-quality content showcasing the project.</li>
+            </StyledList>
           </StyledSection>
         </MainContent>
       </ContentWrapper>
@@ -266,9 +295,27 @@ const GradientOverlay = styled.div`
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(0, 168, 107, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(0, 135, 81, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 168, 107, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const PatternOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    ${colors.green}05,
+    ${colors.green}05 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  opacity: 0.05;
   pointer-events: none;
   z-index: 1;
 `;
@@ -277,9 +324,9 @@ const ContentWrapper = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 3rem;
   
   @media (max-width: 768px) {
     padding: 0 1rem;
@@ -289,8 +336,9 @@ const ContentWrapper = styled.div`
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  padding: 4rem 0;
+  gap: 8rem;
+  padding: 8rem 0;
+  position: relative;
 `;
 
 const CoverSection = styled.section`
@@ -306,23 +354,56 @@ const CoverSection = styled.section`
 const Logo = styled.div`
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, ${colors.orange}, ${colors.green});
+  background: linear-gradient(45deg, ${colors.green}, ${colors.lightGreen});
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
   font-weight: bold;
-  color: ${colors.lightText};
+  color: ${colors.white};
   margin-bottom: 2rem;
+  position: relative;
+  overflow: visible;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, ${colors.green}, ${colors.gold});
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0.5;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
 `;
 
 const Title = styled.h1`
   font-size: 4.5rem;
-  background: linear-gradient(90deg, ${colors.orange}, ${colors.yellow}, ${colors.green});
+  background: linear-gradient(90deg, ${colors.green}, ${colors.white}, ${colors.lightGreen});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 135, 81, 0.3);
+  position: relative;
+  
+  &::after {
+    content: '🌍';
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 2rem;
+  }
 `;
 
 const Subtitle = styled.h2`
@@ -339,32 +420,52 @@ const TagLine = styled.p`
 
 const StyledSection = styled.section`
   background: rgba(255, 255, 255, 0.03);
-  border: 2px solid;
-  border-image: linear-gradient(
-    45deg,
-    rgba(255, 107, 0, 0.5),
-    rgba(0, 168, 107, 0.5)
-  ) 1;
-  border-radius: 20px;
-  padding: 3rem;
+  border: none;
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(45deg, ${colors.green}, ${colors.gold}) border-box;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) padding-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  &::after {
+    content: '🌟';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 24px;
+    transform: rotate(45deg);
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 
   h2 {
-    font-size: 2.8rem;
+    font-size: 4.5rem;
     font-weight: bold;
-    background: linear-gradient(90deg, ${colors.orange}, ${colors.green});
+    background: linear-gradient(90deg, ${colors.green}, ${colors.white}, ${colors.lightGreen});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     position: relative;
     display: inline-block;
+    text-align: center;
+    width: 100%;
 
     &::after {
       content: '';
@@ -373,7 +474,11 @@ const StyledSection = styled.section`
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, ${colors.orange}, ${colors.yellow}, ${colors.green});
+      background: linear-gradient(90deg, 
+        ${colors.green}, 
+        ${colors.gold}, 
+        ${colors.green}
+      );
       border-radius: 2px;
     }
   }
@@ -389,31 +494,75 @@ const StyledSection = styled.section`
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     
     li {
-      font-size: 1.1rem;
-      padding: 1rem;
-      background: rgba(255, 107, 0, 0.05);
+      font-size: 1.2rem;
+      padding: 1.5rem;
+      line-height: 1.6;
+      background: rgba(0, 135, 81, 0.05);
       border-radius: 12px;
-      border: 1px solid rgba(255, 107, 0, 0.1);
+      border: 1px solid rgba(0, 135, 81, 0.1);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       color: ${colors.lightText};
       transition: all 0.3s ease;
       
       &:hover {
         transform: translateX(5px);
-        background: rgba(255, 107, 0, 0.08);
-        border-color: ${colors.orange};
+        background: rgba(0, 135, 81, 0.08);
+        border-color: ${colors.green};
       }
       
       &:before {
-        content: '🎵';
+        content: '⭐';  // Nigerian star symbol
         margin-right: 1rem;
-        font-size: 1.2rem;
       }
+    }
+  }
+
+  &:hover .NigerianFlag {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+`;
+
+const AdinkraSymbol = styled.span`
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  animation: rotate 10s linear infinite;
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  
+  li {
+    font-size: 1.2rem;
+    padding: 1.5rem;
+    line-height: 1.6;
+    background: rgba(0, 135, 81, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 135, 81, 0.1);
+    display: flex;
+    align-items: flex-start;
+    color: ${colors.lightText};
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateX(5px);
+      background: rgba(0, 135, 81, 0.08);
+      border-color: ${colors.green};
     }
   }
 `;
