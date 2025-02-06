@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
+// Define Afrobeats color palette
+const colors = {
+  orange: '#FF6B00',
+  yellow: '#FFD700',
+  green: '#00A86B',
+  darkBg: '#1A0F3C',
+  lightText: 'rgba(255, 255, 255, 0.9)',
+  darkText: '#0A0A0F'
+};
+
 const ShareOptions = styled.div`
   position: fixed;
   top: 20px;
@@ -242,8 +252,8 @@ const PitchDeck = () => {
 
 const PageContainer = styled.div`
   width: 100%;
-  background: linear-gradient(135deg, #1a0f3c 0%, #2d1b4e 50%, #3d2960 100%);
-  color: white;
+  background: ${colors.darkBg};
+  color: ${colors.lightText};
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
@@ -256,9 +266,9 @@ const GradientOverlay = styled.div`
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(255, 128, 0, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(148, 0, 211, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 168, 107, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 `;
@@ -296,19 +306,20 @@ const CoverSection = styled.section`
 const Logo = styled.div`
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, #FFD700, #FF1493);
+  background: linear-gradient(45deg, ${colors.orange}, ${colors.green});
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
   font-weight: bold;
+  color: ${colors.lightText};
   margin-bottom: 2rem;
 `;
 
 const Title = styled.h1`
   font-size: 4.5rem;
-  background: linear-gradient(90deg, #FFD700, #FF1493);
+  background: linear-gradient(90deg, ${colors.orange}, ${colors.yellow}, ${colors.green});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -331,9 +342,8 @@ const StyledSection = styled.section`
   border: 2px solid;
   border-image: linear-gradient(
     45deg,
-    rgba(255, 215, 0, 0.5),
-    rgba(255, 20, 147, 0.5),
-    rgba(148, 0, 211, 0.5)
+    rgba(255, 107, 0, 0.5),
+    rgba(0, 168, 107, 0.5)
   ) 1;
   border-radius: 20px;
   padding: 3rem;
@@ -349,7 +359,7 @@ const StyledSection = styled.section`
   h2 {
     font-size: 2.8rem;
     font-weight: bold;
-    background: linear-gradient(90deg, #FFD700, #FF1493, #9400D3);
+    background: linear-gradient(90deg, ${colors.orange}, ${colors.green});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 2rem;
@@ -363,7 +373,7 @@ const StyledSection = styled.section`
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, #FFD700, #FF1493, #9400D3);
+      background: linear-gradient(90deg, ${colors.orange}, ${colors.yellow}, ${colors.green});
       border-radius: 2px;
     }
   }
@@ -385,18 +395,18 @@ const StyledSection = styled.section`
     li {
       font-size: 1.1rem;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 107, 0, 0.05);
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 107, 0, 0.1);
       display: flex;
       align-items: center;
-      color: rgba(255, 255, 255, 0.9);
+      color: ${colors.lightText};
       transition: all 0.3s ease;
       
       &:hover {
         transform: translateX(5px);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 215, 0, 0.3);
+        background: rgba(255, 107, 0, 0.08);
+        border-color: ${colors.orange};
       }
       
       &:before {
