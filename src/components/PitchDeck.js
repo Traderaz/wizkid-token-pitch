@@ -15,16 +15,21 @@ const colors = {
 
 const ShareOptions = styled.div`
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  
+  @media (min-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
 `;
 
 const ShareButton = styled.button`
-  padding: 12px 24px;
+  padding: 8px 16px;
   background: linear-gradient(45deg, ${colors.green}, ${colors.lightGreen});
   border: none;
   border-radius: 30px;
@@ -36,7 +41,13 @@ const ShareButton = styled.button`
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
   
+  @media (min-width: 768px) {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -52,7 +63,7 @@ const ShareButton = styled.button`
 const SharePopup = styled.div`
   position: absolute;
   top: 100%;
-  right: 0;
+  right: -10px;
   margin-top: 10px;
   background: rgba(0, 135, 81, 0.1);
   backdrop-filter: blur(10px);
@@ -60,18 +71,30 @@ const SharePopup = styled.div`
   border-radius: 15px;
   border: 1px solid ${colors.green}40;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: calc(100vw - 40px);
+  max-width: 300px;
+  
+  @media (min-width: 768px) {
+    width: auto;
+    right: 0;
+  }
 `;
 
 const ShareLink = styled.input`
-  width: 300px;
+  width: 100%;
   padding: 12px;
   border: 1px solid ${colors.green}40;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   color: ${colors.white};
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   
+  @media (min-width: 768px) {
+    width: 300px;
+    font-size: 1rem;
+  }
+
   &:focus {
     outline: none;
     border-color: ${colors.green};
@@ -321,24 +344,25 @@ const PatternOverlay = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 2;
-  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 3rem;
-  
-  @media (max-width: 768px) {
-    padding: 0 1rem;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+
+  @media (min-width: 768px) {
+    padding: 0 3rem;
   }
 `;
 
 const MainContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8rem;
-  padding: 8rem 0;
-  position: relative;
+  gap: 4rem;
+  padding: 4rem 0;
+  
+  @media (min-width: 768px) {
+    gap: 8rem;
+    padding: 8rem 0;
+  }
 `;
 
 const CoverSection = styled.section`
@@ -352,14 +376,14 @@ const CoverSection = styled.section`
 `;
 
 const Logo = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   background: linear-gradient(45deg, ${colors.green}, ${colors.lightGreen});
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   color: ${colors.white};
   margin-bottom: 2rem;
@@ -385,10 +409,16 @@ const Logo = styled.div`
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
   }
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+    font-size: 3rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   background: linear-gradient(90deg, ${colors.green}, ${colors.white}, ${colors.lightGreen});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -404,24 +434,48 @@ const Title = styled.h1`
     top: 0;
     font-size: 2rem;
   }
+
+  @media (min-width: 768px) {
+    font-size: 4.5rem;
+  }
 `;
 
 const Subtitle = styled.h2`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
-  margin: 0;
+  margin: 1rem 0;
+  
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
 `;
 
 const TagLine = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
+  margin: 0.5rem 0;
+  
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+  }
 `;
 
 const StyledSection = styled.section`
   background: rgba(255, 255, 255, 0.03);
   border: none;
   position: relative;
+  padding: 2rem;
+  margin: 1rem 0;
+  min-height: auto;
+  
+  @media (min-width: 768px) {
+    padding: 4rem;
+    margin: 2rem 0;
+    min-height: 300px;
+  }
   
   &::before {
     content: '';
@@ -456,12 +510,12 @@ const StyledSection = styled.section`
   }
 
   h2 {
-    font-size: 4.5rem;
+    font-size: 2rem;
     font-weight: bold;
     background: linear-gradient(90deg, ${colors.green}, ${colors.white}, ${colors.lightGreen});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     position: relative;
     display: inline-block;
     text-align: center;
@@ -481,6 +535,21 @@ const StyledSection = styled.section`
       );
       border-radius: 2px;
     }
+
+    @media (min-width: 768px) {
+      font-size: 4.5rem;
+      margin-bottom: 3rem;
+    }
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+    
+    @media (min-width: 768px) {
+      font-size: 1.8rem;
+      margin: 2.5rem 0 1.5rem 0;
+    }
   }
   
   p {
@@ -494,12 +563,17 @@ const StyledSection = styled.section`
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
     
     li {
-      font-size: 1.2rem;
-      padding: 1.5rem;
+      font-size: 1rem;
+      padding: 1rem;
       line-height: 1.6;
       background: rgba(0, 135, 81, 0.05);
       border-radius: 12px;
@@ -508,6 +582,7 @@ const StyledSection = styled.section`
       align-items: flex-start;
       color: ${colors.lightText};
       transition: all 0.3s ease;
+      word-break: break-word;
       
       &:hover {
         transform: translateX(5px);
@@ -518,6 +593,11 @@ const StyledSection = styled.section`
       &:before {
         content: '⭐';  // Nigerian star symbol
         margin-right: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 1.2rem;
+        padding: 1.5rem;
       }
     }
   }
@@ -544,12 +624,17 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
   
   li {
-    font-size: 1.2rem;
-    padding: 1.5rem;
+    font-size: 1rem;
+    padding: 1rem;
     line-height: 1.6;
     background: rgba(0, 135, 81, 0.05);
     border-radius: 12px;
@@ -558,6 +643,7 @@ const StyledList = styled.ul`
     align-items: flex-start;
     color: ${colors.lightText};
     transition: all 0.3s ease;
+    word-break: break-word;
     
     &:hover {
       transform: translateX(5px);
