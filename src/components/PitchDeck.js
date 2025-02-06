@@ -223,7 +223,6 @@ const PitchDeck = () => {
           <CoverSection>
             <Logo>
               <span>W</span>
-              <AdinkraSymbol>✳</AdinkraSymbol>
             </Logo>
             <Title>Wizkid Token</Title>
             <Subtitle>The Future of Afrobeats & Crypto</Subtitle>
@@ -605,18 +604,6 @@ const StyledSection = styled.section`
   &:hover .NigerianFlag {
     opacity: 1;
     transform: scale(1.1);
-  }
-`;
-
-const AdinkraSymbol = styled.span`
-  position: absolute;
-  font-size: 1.5rem;
-  opacity: 0.5;
-  animation: rotate 10s linear infinite;
-
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
 `;
 
